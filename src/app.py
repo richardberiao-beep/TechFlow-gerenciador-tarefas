@@ -20,7 +20,7 @@ def criar_tarefa():
         'titulo': dados['titulo'],
         'descricao': dados.get('descricao', ''),
         'status': dados.get('status', 'A Fazer'),
-        'prazo': dados.get('prazo', None) # Incluído para a mudança de escopo
+        'prazo': dados.get('prazo', None) # MUDANÇA DE ESCOPO
     }
     tarefas.append(nova_tarefa)
     id_atual += 1
