@@ -14,6 +14,7 @@ def home():
     <ul>
         <li>GET /tarefas</li>
         <li>POST /tarefas</li>
+        <li>PUT /tarefas</li>
         <li>DELETE /tarefas/id</li>
     </ul>
     '''
