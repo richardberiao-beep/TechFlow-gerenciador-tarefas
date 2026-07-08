@@ -36,7 +36,7 @@ def criar_tarefa():
         'titulo': dados['titulo'],
         'descricao': dados.get('descricao', ''),
         'status': dados.get('status', 'A Fazer'),
-        'prazo': dados.get('prazo', None) # MUDANÇA DE ESCOPO
+        'prazo': dados.get('prazo', None)  # MUDANÇA DE ESCOPO
     }
     tarefas.append(nova_tarefa)
     id_atual += 1
@@ -45,6 +45,22 @@ def criar_tarefa():
 @app.route('/tarefas', methods=['GET'])
 def listar_tarefas():
     return jsonify(tarefas), 200
+
+@app.route('/tarefas/<int:id_tarefa>', methods=['PUT'])
+def atualizar_tarefa(id_tarefa):
+    dados = request.get_json()
+
+    tarefa = next((t for t in tarefas if t['id'] == id_tarefa), None)
+
+    if not tarefa:
+        return jsonify({'erro': 'Tarefa nao encontrada'}), 404
+
+    tarefa['titulo'] = dados.get('titulo', tarefa['titulo'])
+    tarefa['descricao'] = dados.get('descricao', tarefa['descricao'])
+    tarefa['status'] = dados.get('status', tarefa['status'])
+    tarefa['prazo'] = dados.get('prazo', tarefa['prazo'])
+
+    return jsonify(tarefa), 200
 
 @app.route('/tarefas/<int:id_tarefa>', methods=['DELETE'])
 def deletar_tarefa(id_tarefa):
