@@ -2,6 +2,22 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
+# nova rota para a pagina inicial
+
+@app.route('/')
+def home():
+    return '''
+    <h1>TaskFlow - Sistema de Gerenciamento de Tarefas</h1>
+    <p>API desenvolvida para a disciplina de Software Engineering.</p>
+
+    <h3>Rotas disponíveis:</h3>
+    <ul>
+        <li>GET /tarefas</li>
+        <li>POST /tarefas</li>
+        <li>DELETE /tarefas/id</li>
+    </ul>
+    '''
+
 # Banco de dados simulado em uma lista
 tarefas = []
 id_atual = 1
